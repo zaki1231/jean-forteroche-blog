@@ -15,14 +15,12 @@ class Commentaire
     }
 
     public function hydrate(array $data)
-    {        
-        foreach ($data as $key => $value)
-        {
-            $method = 'set'.ucfirst($key); 
-            
-            if (method_exists($this, $method)) 
-            {
-                $this->$method($value); 
+    {
+        foreach ($data as $key => $value) {
+            $method = 'set' . ucfirst($key);
+
+            if (method_exists($this, $method)) {
+                $this->$method($value);
             }
         }
     }
@@ -55,34 +53,30 @@ class Commentaire
     public function setId($id)
     {
         $id = (int) $id;
-        
-        if ($id > 0)
-        {
+
+        if ($id > 0) {
             $this->_id = $id;
         }
     }
 
     public function setContenu($contenu)
     {
-        if (is_string($contenu))
-        {
-            $this->_contenu = $contenu ;
+        if (is_string($contenu)) {
+            $this->_contenu = $contenu;
         }
     }
 
     public function setSignale($signale)
     {
-        $signale = (filter_var('true', FILTER_VALIDATE_BOOLEAN)); // transforme int en boolean
-        if (is_bool($signale))
-        {
-            $this->_signale = $signale ;
+        $signale = intval($signale);
+        if (is_int($signale)) {
+            $this->_signale = $signale;
         }
     }
 
     public function setNomUtilisateur($nomUtilisateur)
     {
-        if (is_string($nomUtilisateur))
-        {
+        if (is_string($nomUtilisateur)) {
             $this->_nomUtilisateur = $nomUtilisateur;
         }
     }
@@ -91,9 +85,8 @@ class Commentaire
     {
         $episodeId = (int) $episodeId;
 
-        if ($episodeId > 0)
-        {
+        if ($episodeId > 0) {
             $this->_episodeId = $episodeId;
         }
     }
-}    
+}

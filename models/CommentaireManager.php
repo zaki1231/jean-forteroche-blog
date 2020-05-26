@@ -16,7 +16,7 @@ class CommentaireManager extends Manager
         $query = $this->_bd->prepare('INSERT INTO commentaires(nomUtilisateur, signale, contenu, episodeId) VALUES (:nomUtilisateur, :signale, :contenu, :episodeId)');
 
         $query->bindValue(':nomUtilisateur', $commentaire->getNomUtilisateur());
-        $query->bindValue(':signale', intval($commentaire->getSignale()));
+        $query->bindValue(':signale', $commentaire->getSignale());
         $query->bindValue(':contenu', $commentaire->getContenu());
         $query->bindValue(':episodeId', $commentaire->getEpisodeId());
         $query->execute();
@@ -30,7 +30,7 @@ class CommentaireManager extends Manager
         $query = $this->_bd->prepare('UPDATE commentaires SET nomUtilisateur = :nomUtilisateur, contenu = :contenu, signale = :signale, episodeId = :episodeId WHERE id = :id');
 
         $query->bindValue(':nomUtilisateur', $commentaire->getNomUtilisateur());
-        $query->bindValue(':signale', intval($commentaire->getSignale()));
+        $query->bindValue(':signale', $commentaire->getSignale());
         $query->bindValue(':contenu', $commentaire->getContenu());
         $query->bindValue(':episodeId', $commentaire->getEpisodeId());
         $query->bindValue(':id', $commentaire->getId());
