@@ -72,7 +72,7 @@ class Commentaire
 
     public function setSignale($signale)
     {
-        $signale = (filter_var('true', FILTER_VALIDATE_BOOLEAN)); // true
+        $signale = (filter_var('true', FILTER_VALIDATE_BOOLEAN)); // transforme int en boolean
         if (is_bool($signale))
         {
             $this->_signale = $signale ;

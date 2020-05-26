@@ -32,7 +32,7 @@ $title = 'tableau de bord';
 
       <!-- Card image -->
       <div class="view overlay">
-        <img class="card-img-top" src="t1.jpg" alt="Card image cap">
+        <img class="card-img-top" src="public/images/episode-image.jpg" alt="Card image cap">
       </div>
 
       <!-- Card content -->

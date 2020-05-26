@@ -1,31 +1,30 @@
 <?php
 
-class BiographieManager
-{
-    private $_bd;
+require_once('Manager.php');
 
-    public function __construct($bd)
+class BiographieManager extends Manager
+{
+
+    public function __construct()
     {
-        $this->setBD($bd);
+        parent::__construct();
     }
-        
+
     public function create($biographie)
     {
         $query = $this->_bd->prepare('INSERT INTO Biographie(contenu) VALUES (:contenu)');
-      
-        $query->bindValue(':contenu',$biographie);
-        $query->execute();  
-       
+
+        $query->bindValue(':contenu', $biographie);
+        $query->execute();
     }
 
     public function update(Biographie $biographie)
     {
         $query = $this->_bd->prepare('UPDATE Biographie SET contenu = :contenu WHERE id = :id');
-        
+
         $query->bindValue(':contenu', $biographie->getContenu());
         $query->bindValue(':id', $biographie->getId());
         $query->execute();
-
     }
 
     public function read()
@@ -39,17 +38,8 @@ class BiographieManager
 
     public function delete(Biographie $biographie)
     {
-        $query = $this->_bd->prepare('DELETE FROM Biographie WHERE id = :id');  
-        $query-> bindValue(':id', $biographie->getId());
+        $query = $this->_bd->prepare('DELETE FROM Biographie WHERE id = :id');
+        $query->bindValue(':id', $biographie->getId());
         $query->execute();
     }
-        public function bd()
-        {
-            return $this->_bd;
-        }
-        public function setbd(PDO $bd)
-        {
-            $this ->_bd = $bd;
-        }
-
 }

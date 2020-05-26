@@ -56,13 +56,14 @@
 
 foreach ($commentaires as $commentaire) {
 ?>
+<form action=<?php echo "index.php?route=episode-" . $episode->getId(); ?> method="post">
     <div class="container width_container">
         <div class="card border-0 shadow my-5">
             <a href='#' class="pseudo"> <?php echo $commentaire->getNomUtilisateur(); ?> </a>
             <div class="card-body">
                 <p class="card-text "> <?php echo $commentaire->getContenu(); ?> </p>
             </div>
-            <a href="<?= "index.php?route=" ?>" class="btn btn-signaler btn-primary">signaler</a>
+            <a href=<?php echo "index.php?route=commentaire-" . $commentaire->getId(); ?> class="btn btn-signaler btn-primary" name="signaler">signaler</a>
         </div>
     </div>
 

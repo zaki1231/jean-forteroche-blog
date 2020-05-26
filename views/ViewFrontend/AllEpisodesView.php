@@ -26,7 +26,7 @@
 
             <!-- Card image -->
             <div class="view overlay">
-                <img class="card-img-top" src="t1.jpg" height="340" alt="Card image cap">
+                <img class="card-img-top" src="public/images/episode-image.jpg" height="340" alt="Card image cap">
 
             </div>
 

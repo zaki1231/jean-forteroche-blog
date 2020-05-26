@@ -1,29 +1,29 @@
 <?php
+require_once('Manager.php');
 
-class AdminManager
+class AdminManager extends Manager
 {
-    private $_db;
 
-    public function __construct($db)
+    public function __construct()
     {
-        $this->setDb($db);
+        parent::__construct();
     }
 
     public function create(Admin $admin)
     {
-        $query = $this->_db->prepare('INSERT INTO Admin(nom, mdp) VALUES (:nom, :mdp)');
+        $query = $this->_bd->prepare('INSERT INTO Admin(nom, mdp) VALUES (:nom, :mdp)');
 
         $query->binvalue(':nom', $admin->getNom());
         $query->binvalue(':mdp', $admin->getMdp());
         $query->execute();
 
-        $dataBDD = ['id' => $this->_db->lastInsertId()];
+        $dataBDD = ['id' => $this->_bd->lastInsertId()];
         $admin->hydrate($dataBDD);
     }
 
     public function update(Admin $admin)
     {
-        $query = $this->_db->prepare('UPDATE admin SET nom = :nom, mdp = :mdp WHERE id = :id');
+        $query = $this->_bd->prepare('UPDATE admin SET nom = :nom, mdp = :mdp WHERE id = :id');
 
         $query->bindvalue(':nom', $admin->getNom());
         $query->bindvalue(':mdp', password_hash($admin->getMdp(), PASSWORD_BCRYPT));
@@ -33,17 +33,12 @@ class AdminManager
 
     public function exist($id, $mdp)
     {
-        $query = $this->_db->prepare('SELECT nom, mdp FROM Admin WHERE nom = :nom');
+        $query = $this->_bd->prepare('SELECT nom, mdp FROM Admin WHERE nom = :nom');
+        
         $query-> bindValue(':nom' , $id);
-
         $query->execute();
     
         $infosAdmin = $query->fetch(PDO::FETCH_ASSOC);
-        
-        
-     
-
-
         if($infosAdmin == false)
         {
             return false;
@@ -57,7 +52,7 @@ class AdminManager
 
     public function read(Admin $admin)
     {
-        $query = $this->_db->prepare('SELECT nom, mdp FROM Admin WHERE nom= :nom AND mdp = :mdp');
+        $query = $this->_bd->prepare('SELECT nom, mdp FROM Admin WHERE nom= :nom AND mdp = :mdp');
         $query->binValue(':nom', $admin->getNom());
         $query->binValue(':mdp', $admin->getMdp());
         $query->execute();
@@ -68,18 +63,8 @@ class AdminManager
 
     public function delete(Admin $admin)
     {
-        $query = $this->_db->prepare('DELETE FROM admin WHERE id = :id');  
+        $query = $this->_bd->prepare('DELETE FROM admin WHERE id = :id');  
         $query-> bindValue(':id', $admin->getId());
         $query->execute();
     }
-
-    public function db()
-    {
-        return $this->_db;
-    }
-    public function setDb(PDO $db)
-    {
-        $this ->_db = $db;
-    } 
-
 }

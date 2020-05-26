@@ -1,4 +1,3 @@
-
 <?php
 require('models/Biographie.php');
 require('models/BiographieManager.php');
@@ -6,6 +5,7 @@ require('models/EpisodeManager.php');
 require('models/Episode.php');
 require('models/CommentaireManager.php');
 require('models/Commentaire.php');
+
 class BackController {
     
     public function afficherPageErreur()
@@ -17,39 +17,24 @@ class BackController {
        
     }
     
-
     public function afficherAdminHome()
     {
         $this->afficherPageErreur();
-        $db = new PDO('mysql:host=localhost;dbname=blog_ecrivain;port=3306', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $dbManager = new EpisodeManager($db);
+        $dbManager = new EpisodeManager();
         $episodes = $dbManager->readAll();
-
-
         require('views/ViewBackend/AdminHome.php');
     }
 
     public function enregistrerBiographie ()
     {
-       
-        $db = new PDO('mysql:host=localhost;dbname=blog_ecrivain;port=3306', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-       
-        $dbManager = new BiographieManager($db);
-            
+        $dbManager = new BiographieManager();      
         $dbManager->create($_POST['text']);
      
     }
 
     public function enregistrerEpisode()
-    {
-        
-        $db = new PDO('mysql:host=localhost;dbname=blog_ecrivain;port=3306', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-       
-        $dbManager = new EpisodeManager($db);
-        
+    {    
+        $dbManager = new EpisodeManager(); 
         $data = ['contenu' => $_POST['textEpisode'], 'titre' => $_POST['titreEpisode']];
         
         $episode = new Episode($data);
@@ -59,53 +44,68 @@ class BackController {
     public function afficherUpdateEpisode($id)
     {
         $this->afficherPageErreur();
-        $db = new PDO('mysql:host=localhost;dbname=blog_ecrivain;port=3306', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-        $dbManager = new EpisodeManager($db); 
+        $dbManager = new EpisodeManager(); 
         $episode = $dbManager->read($id); 
         require('views/ViewBackend/UpdateEpisode.php');
       
     }
     public function enregistrerUpdateEpisode($id)
     {
-        $db = new PDO('mysql:host=localhost;dbname=blog_ecrivain;port=3306', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-       
-        $dbManager = new EpisodeManager($db);
-        
+        $dbManager = new EpisodeManager();
         $data = ['contenu' => $_POST['modifierTextEpisode'], 'titre' => $_POST['modifierTitreEpisode'], 'id' =>$id ];
+
         $updateEpisode = new Episode($data);
         $dbManager->update($updateEpisode);
         $this->afficherAdminHome();
- 
-        
     }
 
-    public function supprimerEpisode($id)
-    {
-        $db = new PDO('mysql:host=localhost;dbname=blog_ecrivain;port=3306', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-       
-        $dbManager = new EpisodeManager($db);
+    public function supprimerEpisode($id){
+        $dbManager = new EpisodeManager();
         $episode = $dbManager->delete($id);
-        $this->afficherAdminHome();
- 
-        
+        $this->afficherAdminHome();    
     }
 
 
-    public function enregistrerComment($episodeId)
-    {
-        $bd = new PDO('mysql:host=localhost;dbname=blog_ecrivain;port=3306', 'root', '');
-        $bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-       
-        $dbManager = new CommentaireManager($bd);
+    public function enregistrerComment($episodeId){
+        $dbManager = new CommentaireManager();
         $data = ['nomUtilisateur' => $_POST['pseudo'], 'contenu' => $_POST['comment'], 'episodeId' =>$episodeId, 'signale'=> false];
-        $commentaire = new Commentaire($data);
 
-        $dbManager->create($commentaire);
-        
+        $commentaire = new Commentaire($data);
+        $dbManager->create($commentaire);   
     }
+    
+    public function recupererCommentaire( $commentaireId ){ 
+
+        $dbManager = new CommentaireManager();
+        $commentaire = $dbManager->read( $commentaireId );
+        return $commentaire;
+    }
+
+    public function signalerCommentaire(Commentaire $commentaire){
+
+        $dbManager = new CommentaireManager();
+        $data = ['signale' => true];
+        $commentaire->hydrate($data);
+        $dbManager->update($commentaire);
+        header('Location: index.php?route=episode-' . $commentaire->getEpisodeId());
+    }
+
+    public function afficherCommentaireSignale(){
+        $this->afficherPageErreur();
+       
+        $dbManager = new CommentaireManager(); 
+        $commentaires = $dbManager->readCommentaireSignale(); 
+       require('views/ViewBackend/ViewCommentaire.php');
+    }
+    public function supprimerCommentaire($commentaireId)
+    {
+       
+        $dbManager = new CommentaireManager();
+        $episode = $dbManager->delete($commentaireId);
+        $this->afficherCommentaireSignale();    
+    }
+
+
 
     public function afficherAddEpisode()
     { 

@@ -4,15 +4,11 @@ require('models/Admin.php');
 require('models/AdminManager.php');
 
 
-
 class FrontController
 {
-
     public function voirBiographie()
     {
-        $db = new PDO('mysql:host=localhost;dbname=blog_ecrivain;port=3306', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $dbManager = new BiographieManager($db);
+        $dbManager = new BiographieManager();
         $contenuBiographie = $dbManager->read();
         require('views/ViewFrontend/BiographieView.php');
     }
@@ -20,18 +16,15 @@ class FrontController
 
     public function afficherAllEpisodes()
     {
-        $db = new PDO('mysql:host=localhost;dbname=blog_ecrivain;port=3306', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $dbManager = new EpisodeManager($db);
+        $dbManager = new EpisodeManager();
         $episodes = $dbManager->readAll();
 
         require('views/ViewFrontend/AllEpisodesView.php');
     }
+
     public function afficherEpisode($id)
     {
-        $db = new PDO('mysql:host=localhost;dbname=blog_ecrivain;port=3306', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $dbManager = new EpisodeManager($db);
+        $dbManager = new EpisodeManager();
         $episode = $dbManager->read($id);
 
         $commentaires = $this->recupererCommentaires($id);
@@ -41,11 +34,10 @@ class FrontController
 
     public function recupererCommentaires($episodeId)
     {
-        $db = new PDO('mysql:host=localhost;dbname=blog_ecrivain;port=3306', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $dbManager = new CommentaireManager($db);
+        $dbManager = new CommentaireManager();
         return $dbManager->readAll($episodeId);
     }
+
 
     public function afficherHome()
     {
@@ -62,10 +54,7 @@ class FrontController
 
     public function afficherLogin()
     {
-        $db = new PDO('mysql:host=localhost;dbname=blog_ecrivain;port=3306', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $dbManager = new AdminManager($db);
+        $dbManager = new AdminManager();
 
         if (isset($_POST['connecter']) && isset($_POST['identifiant']) && isset($_POST['motdepasse'])) {
 
@@ -78,13 +67,11 @@ class FrontController
                 session_start();
                 $_SESSION['identifiant'] = $_POST['identifiant'];
                 $_SESSION['motdepasse'] = $_POST['motdepasse'];
-        
-                    header('Location: index.php?route=admin');
-                    exit();
+
+                header('Location: index.php?route=admin');
+                exit();
             }
         }
         require('views/ViewFrontend/LoginView.php');
     }
-
-    
 }
