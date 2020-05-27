@@ -22,10 +22,16 @@ foreach ($commentaires as $commentaire) {
 ?>
   <div class="container width_container">
     <div class="card border-0 shadow my-5">
+      <div class="card">
+        <div class="card-body">
+          <h5 class='commentaire-signale'>Ce commentaire est signalé <span class='chiffre-color'><?php echo $commentaire->getSignale(); ?> </span> fois</h5>
+        </div>
+      </div>
       <div class="card-body">
         <p class="card-text "> <?php echo $commentaire->getContenu(); ?> </p>
         <a href=<?php echo "index.php?route=supprimerCommentaire-" . $commentaire->getId(); ?> class="suprimer-text black-text d-flex justify-content-end">
-          <h5>Supprimer<i class="fas fa-angle-double-right "></i></h5></a>
+          <h5>Supprimer<i class="fas fa-angle-double-right "></i></h5>
+        </a>
       </div>
     </div>
   </div>

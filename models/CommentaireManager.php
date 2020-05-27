@@ -67,7 +67,7 @@ class CommentaireManager extends Manager
 
         $commentaireSignale = [];
 
-        $query = $this->_bd->prepare('SELECT * FROM commentaires WHERE signale= 1');
+        $query = $this->_bd->prepare('SELECT * FROM commentaires WHERE signale >= 1');
         $query->execute();
 
         while ($infosCommentaire = $query->fetch(PDO::FETCH_ASSOC)) {

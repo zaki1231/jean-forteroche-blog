@@ -41,6 +41,7 @@ class FrontController
 
     public function afficherHome()
     {
+
         require('views/ViewFrontend/HomeView.php');
     }
 

@@ -44,6 +44,7 @@ class Router
                 $idchaine = explode("-", $_GET['route'])[1];
                 $episodeId = intval($idchaine);
                 $this->_FrontController->afficherEpisode($episodeId);
+
                 if (isset($_POST['pseudo']) && isset($_POST['comment'])) {
                     $this->_BackController->enregistrerComment($episodeId);
                 }
