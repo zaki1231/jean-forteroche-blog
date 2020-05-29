@@ -10,7 +10,7 @@ class FrontController
     {
         $dbManager = new BiographieManager();
         $contenuBiographie = $dbManager->read();
-        require('views/ViewFrontend/BiographieView.php');
+        require('views/frontend/BiographieView.php');
     }
 
 
@@ -19,7 +19,7 @@ class FrontController
         $dbManager = new EpisodeManager();
         $episodes = $dbManager->readAll();
 
-        require('views/ViewFrontend/AllEpisodesView.php');
+        require('views/frontend/AllEpisodesView.php');
     }
 
     public function afficherEpisode($id)
@@ -29,7 +29,7 @@ class FrontController
 
         $commentaires = $this->recupererCommentaires($id);
 
-        require('views/ViewFrontend/EpisodeView.php');
+        require('views/frontend/EpisodeView.php');
     }
 
     public function recupererCommentaires($episodeId)
@@ -37,21 +37,6 @@ class FrontController
         $dbManager = new CommentaireManager();
         return $dbManager->readAll($episodeId);
     }
-
-
-    public function afficherHome()
-    {
-
-        require('views/ViewFrontend/HomeView.php');
-    }
-
-
-    public function afficherContact()
-    {
-        require('views/ViewFrontend/ContactView.php');
-    }
-
-
 
     public function afficherLogin()
     {
@@ -63,7 +48,7 @@ class FrontController
             $monAdmin = $dbManager->exist($_POST['identifiant'], $_POST['motdepasse']);
             if (!$monAdmin) {
 
-                $message = 'Identifiant ou mot de passe inccoret';
+                $message = 'Identifiant ou mot de passe inccoret, Veuillez réessayer .';
             } else {
                 session_start();
                 $_SESSION['identifiant'] = $_POST['identifiant'];
@@ -73,6 +58,14 @@ class FrontController
                 exit();
             }
         }
-        require('views/ViewFrontend/LoginView.php');
+        require('views/frontend/LoginView.php');
     }
+
+    public function afficherHome()
+    {
+        $dbManager = new EpisodeManager();
+        $episodeRecent= $dbManager->recupereEpisodeRecent();
+        require('views/frontend/HomeView.php');
+    }
+
 }

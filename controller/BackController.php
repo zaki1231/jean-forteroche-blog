@@ -22,7 +22,7 @@ class BackController
         $this->afficherPageErreur();
         $dbManager = new EpisodeManager();
         $episodes = $dbManager->readAll();
-        require('views/ViewBackend/AdminHome.php');
+        require('views/admin/AdminHomeView.php');
     }
 
     public function enregistrerBiographie()
@@ -44,7 +44,7 @@ class BackController
         $this->afficherPageErreur();
         $dbManager = new EpisodeManager();
         $episode = $dbManager->read($id);
-        require('views/ViewBackend/UpdateEpisode.php');
+        require('views/admin/UpdateEpisodeView.php');
     }
     public function enregistrerUpdateEpisode($id)
     {
@@ -96,28 +96,27 @@ class BackController
 
         $dbManager = new CommentaireManager();
         $commentaires = $dbManager->readCommentaireSignale();
-        require('views/ViewBackend/ViewCommentaire.php');
+        require('views/admin/CommentaireView.php');
     }
     public function supprimerCommentaire($commentaireId)
     {
-
         $dbManager = new CommentaireManager();
         $episode = $dbManager->delete($commentaireId);
         $this->afficherCommentaireSignale();
     }
 
-
-
     public function afficherAddEpisode()
     {
         $this->afficherPageErreur();
-        require('views/ViewBackend/AddEpisode.php');
+        require('views/admin/AddEpisodeView.php');
     }
 
     public function afficherAddBiographie()
     {
         $this->afficherPageErreur();
-        require('views/ViewBackend/AddBiographie.php');
+        $dbManager = new BiographieManager();
+        $biographie = $dbManager->read();
+        require('views/admin/AddBiographieView.php');
     }
 
     public function deconnecter()
@@ -125,4 +124,5 @@ class BackController
         session_destroy();
         header('Location: index.php?route=home');
     }
+    
 }

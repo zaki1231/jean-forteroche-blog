@@ -20,34 +20,18 @@ $title = 'tableau de bord';
 
 <?php ob_start(); ?>
 
-<div class="bloc-card">
+<div class="col-lg-9 container bloc-card">
   <?php
   foreach ($episodes as $episode) {
   ?>
-
-    <!-- Card Light -->
-
-
-    <div class="col-xs-10 col-sm-10 col-md-3 card cardHomeAdmin">
-
-      <!-- Card image -->
+    <div class="col-lg-5 col-md-5 col-sm-10  card cardHomeAdmin">
       <div class="view overlay">
         <img class="card-img-top" src="public/images/episode-image.jpg" alt="Card image cap">
       </div>
-
-      <!-- Card content -->
       <div class="card-body">
-
-        <!-- Social shares button -->
         <a class="activator waves-effect waves-light mr-4"><i class="fas fa-share-alt"></i></a>
-        <!-- Title -->
-
-        <h4 class="card-title-color "> <?php echo $episode->geTtitre(); ?> </h4>
-
-        <!-- Text -->
-        <p class="card-text-color"> <?php echo substr($episode->getContenu(), 0, 300) ?> </p>
-
-        <!-- Link -->
+        <h4 class="card-title-color "> <?php echo $episode->getTitre(); ?> </h4>
+        <p class="card-text-color"> <?php echo substr($episode->getContenu(), 0, 320,)?> [...] </p>
         <a href=<?php echo "index.php?route=AffichageModifierEpisode-" . $episode->getId(); ?> class="black-text d-flex justify-content-end">
           <h5>Modifier<i class="fas fa-angle-double-right"></i></h5>
         </a>
@@ -71,4 +55,4 @@ $title = 'tableau de bord';
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('BackTemplate.php'); ?>
+<?php require('adminTemplateView.php'); ?>

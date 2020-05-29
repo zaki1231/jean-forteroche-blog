@@ -6,8 +6,6 @@
     padding-left:120px;
 }
 
-
-/* Set a background image by replacing the URL below */
 body {
     background: url('../images/background-image.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -15,6 +13,15 @@ body {
     background-size: cover;
     -o-background-size: cover;
   }
+
+.title-home{
+font-family: fantasy;
+}
+
+.text-white{
+   color : #ffcc35!important;
+}
+
 .card{
     background-color: var(--light);
 }
@@ -27,7 +34,6 @@ body {
     border-color:  var(--cyan);
     background-color: var(--cyan);
     width: 100px;
-    margin-left: 45%;
     margin-top: 25px;
 
 }
@@ -48,13 +54,15 @@ body {
     border-color: white;
     margin-left: 60%;
 }
+
 .btn-signaler{
     width: 100px;
-    margin-left: 82%;
+    margin-left: 2%;
     margin-bottom: 2%;
     background-color: var(--danger);
     border-color: var(--danger);
 }
+
 .btn-signaler:hover{
     background-color: var(--info);
 }
@@ -68,35 +76,38 @@ body {
     color: black;
     border-color: var(--white);
     background-color: white;
-    margin-left: 20px;
 }
+
 .tox-tinymce{
-    height: 500px;
-    width: 80%;
-    margin-left: 140px;
+    width: 100%;
+    margin-left: 1px;
 }
+
+.tox{
+    height: 800px;
+}
+
 .width-TiteEpisode{
     max-width: 63%;
     margin-left: 20%;
 }
 
 .cardHomeAdmin{
-   
-    margin-left: 2%;
-    margin-top: 50px;
-  
+    margin-top: 50px;  
 }
+
 .card-img-top{
     padding-top: 10px;
     height: 280px;
 }
 
 .bloc-card{
+    justify-content: space-around;
     display: flex;
     flex-wrap: wrap;
-    margin-left: 12%;
-  
+ 
 }
+
 .page-footer{
     margin-top: 50px;
     background-color:#286673bf;
@@ -110,9 +121,14 @@ body {
    color:#ffffff;
 }
 
-.title-color{
-    color:#17a2b8;
+.text-color-a:hover{
+    color: #14d89e;
 }
+
+.title-color{
+    color:#ffc107;
+}
+
 .card-title-color{
    color: var(--info);
    text-align: center;
@@ -122,37 +138,56 @@ body {
 .margin-footer{
     margin-left: 10%;
 }
+
 .text-color:hover{
     color:var(--blue);
 }
+
 .login-btn-color{
     color: var(--info);
     background-color: var(--white);
     border-color: var(--cyan);
-    margin-left: 50%;
     margin-top: 2%;
 }
+
 .login-btn-color:hover{
     color: #fff;
     background-color: var(--cyan);
     border-color: var(--cyan);
 }
+
+.message-alerte{
+    font-size: 16px;
+    color: red;
+    text-align: center;
+}
+
 .titleComment{
     text-align: center;
     font-size: 2.6rem;
-    color:#5f171e;
+    color: var(--info);
     margin-bottom: 30px;
 }
+.episode-accueil {
+    color: #17a2b8;
+}
+
 .h5-Modif{
  font-size: 14px;
 }
+
+.display-4 {
+font-size: 3rem;
+font-family: fantasy;
+}
+
 .rowComment{
     margin-top: 20px;
 }
+
 .container-width{
     width: 100%;
 }
-
 
 .pseudo{
     color: var(--danger);
@@ -161,8 +196,26 @@ body {
     font-size: 20px;
     padding-top: 20p;
     padding-left: 15px;
-    margin-top: 10px;
-    
+    margin-top: 10px; 
+}
+.card-accueil{
+    margin-top: 50px;
 }
 
+.title-accueil{
+    font-family: fantasy;
+}
 
+.commentaire-signale{
+    color: black;
+    font-size: 16px;
+    font-weight: bolder;
+    text-align: center;
+}
+.chiffre-color{
+    color: red;
+    font-size: 18px;
+}
+.margin-footer .col-md-4{
+    margin-left: 13%;
+}

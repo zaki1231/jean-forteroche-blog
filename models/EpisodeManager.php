@@ -65,4 +65,13 @@ class EpisodeManager extends Manager
 
         $query->execute();
     }
+
+    public function recupereEpisodeRecent()
+    {
+        $query = $this->_bd->prepare('SELECT * FROM Episode ORDER BY datePublication DESC');
+        $query->execute();
+
+        $episodeRecent = $query->fetch(PDO::FETCH_ASSOC);
+        return new Episode($episodeRecent);
+    }
 }

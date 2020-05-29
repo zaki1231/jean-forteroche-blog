@@ -18,8 +18,9 @@
 <div class="container width_container">
   <div class="card border-0 shadow my-5">
     <div class="card-body p-5">
-
-
+      <p class="message-alerte"><?php if (isset($message)) {
+                                  echo $message;
+                                } ?></p>
       <form action="index.php?route=login" method="post">
 
         <div class="form-group row">
@@ -44,13 +45,11 @@
           </div>
         </div>
 
-        <p><?php if (isset($message)) {
-              echo $message;
-            } ?></p>
+
         <!-- Grid row -->
       </form>
     </div>
   </div>
 </div>
 <?php $content = ob_get_clean(); ?>
-<?php require('FrontTemplate.php'); ?>
+<?php require('FrontTemplateView.php'); ?>

@@ -40,4 +40,4 @@ foreach ($commentaires as $commentaire) {
 }
 ?>
 <?php $content = ob_get_clean(); ?>
-<?php require('BackTemplate.php'); ?>
+<?php require('adminTemplateView.php'); ?>

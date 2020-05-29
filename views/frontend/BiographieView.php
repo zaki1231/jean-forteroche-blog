@@ -30,4 +30,4 @@ $title = 'ma biographie';
     </div>
 </div>
 <?php $content = ob_get_clean(); ?>
-<?php require('FrontTemplate.php'); ?>
+<?php require('FrontTemplateView.php'); ?>

@@ -5,6 +5,7 @@ class Episode
     protected $_id;
     protected $_contenu;
     protected $_titre;
+    protected $_datePublication;
 
     public function __construct(array $data)
     {
@@ -34,10 +35,16 @@ class Episode
         return $this->_contenu;
     }
 
-    public function geTtitre()
+    public function getTitre()
     {
         return $this->_titre;
     }
+
+    public function getDatePublication()
+    {
+        return $this->_datePublication;
+    }
+    
 
     public function setId($id)
     {
@@ -65,4 +72,17 @@ class Episode
         }
     }
 
+    public function setDatePublication($date)
+    {
+        if ($this->validateDate($date))
+        {
+            $this->_datePublication = $date;
+        }
+    }
+
+    private function validateDate($date, $format = 'Y-m-d')
+    {
+        $d = DateTime::createFromFormat($format, $date);
+        return $d && $d->format($format) == $date;
+    }
 }   

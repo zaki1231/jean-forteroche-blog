@@ -22,8 +22,6 @@ class Router
                 $this->_FrontController->voirBiographie();
             } elseif ($_GET['route'] === 'home') {
                 $this->_FrontController->afficherHome();
-            } elseif ($_GET['route'] === 'contact') {
-                $this->_FrontController->afficherContact();
             } elseif ($_GET['route'] === 'login') {
                 $this->_FrontController->afficherLogin();
             } elseif ($_GET['route'] === 'admin') {

@@ -5,8 +5,6 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-
-
             </div>
         </div>
     </div>
@@ -19,11 +17,12 @@
 <div class="container width_container">
     <div class="card border-0 shadow my-5">
         <div class="card-body p-5">
-            <h3 class="card-title card-title-color"> <?php echo $episode->geTtitre(); ?> </h3>
-            <p class="card-text"> <?php echo $episode->getContenu(); ?> </p>
+            <h3 class="card-title card-title-color"> <?php echo $episode->getTitre();?></h3>
+            <p class="card-text"> <?php echo $episode->getContenu();?></p>
         </div>
     </div>
 </div>
+ 
 <form action=<?php echo "index.php?route=episode-" . $episode->getId(); ?> method="post">
     <div class="container width_container">
         <div class="card border-0 shadow my-5">
@@ -43,20 +42,21 @@
                         <div class="md-form mb-0">
                             <label for="form-contact-message">Votre commentaire</label>
                             <textarea id="form-contact-message" class="form-control md-textarea" rows="4" placeholder="commentaire" name="comment"></textarea>
+                            <button type="submit" class="btn btn-outline-info btn-color waves-effect">Envoyer</button>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-outline-info btn-color waves-effect">Envoyer</button>
+                   
                 </div>
 
             </div>
         </div>
     </div>
 </form>
-<?php
 
+<?php
 foreach ($commentaires as $commentaire) {
 ?>
-<form action=<?php echo "index.php?route=episode-" . $episode->getId(); ?> method="post">
+<form action=<?php echo "index.php?route=episode-" .$episode->getId(); ?> method="post">
     <div class="container width_container">
         <div class="card border-0 shadow my-5">
             <a href='#' class="pseudo"> <?php echo $commentaire->getNomUtilisateur(); ?> </a>
@@ -71,6 +71,5 @@ foreach ($commentaires as $commentaire) {
 }
 ?>
 
-
 <?php $content = ob_get_clean(); ?>
-<?php require('FrontTemplate.php'); ?>
+<?php require('FrontTemplateView.php'); ?>
