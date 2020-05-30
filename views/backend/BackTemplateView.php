@@ -33,7 +33,7 @@
                         <span class="sr-only">(current)</span>
                     </li>
                     <li>
-                        <a class="nav-link" href="<?= "index.php?route=commentaire" ?>"> commentaire</a>
+                        <a class="nav-link" href="<?= "index.php?route=commentaire" ?>">Signalements</a>
                     </li>
                     <li>
                         <a href="<?= "index.php?route=deconnexion" ?>" class="btn btn-deconnexion btn-primary">Deconnexion</a>

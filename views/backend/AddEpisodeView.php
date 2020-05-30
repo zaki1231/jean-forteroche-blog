@@ -16,14 +16,14 @@
 <div class='container'>
     <form action="index.php?route=newEpisode" method="post">
         <div class="form-group row">
-            <div class="col-sm-10 width-TiteEpisode">
+            <div class="col-lg-12 col-md-12 col-sm-12">
                 <input type="text" class="form-control" name="titreEpisode" placeholder="Veuillez renseigner un titre">
             </div>
         </div>
 
         <div class="tinymce-width">
             <script src="https://cdn.tiny.cloud/1/7s1qz31y5wi146yyq2qajgvwaz99940hjvn686n6nvo79rlg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-            <textarea name="textEpisode" placeholder="Redigez votre Episode"></textarea>
+            <textarea name="textEpisode" placeholder="Rédigez votre episode"></textarea>
             <input class="btn btn-article btn-primary" type="submit" value="Publier" />
 
             <script>
@@ -33,7 +33,8 @@
                     toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
                     toolbar_mode: 'floating',
                     tinycomments_mode: 'embedded',
-                    tinycomments_author: 'Author name'
+                    tinycomments_author: 'Author name',
+                    height: "480"
                 });
             </script>
         </div>
@@ -42,4 +43,4 @@
 
 
 <?php $content = ob_get_clean(); ?>
-<?php require('adminTemplateView.php'); ?>
+<?php require('BackTemplateView.php'); ?>

@@ -16,13 +16,14 @@ class BackController
             header('Location: index.php?route=login');
         }
     }
+  
 
     public function afficherAdminHome()
     {
         $this->afficherPageErreur();
         $dbManager = new EpisodeManager();
         $episodes = $dbManager->readAll();
-        require('views/admin/AdminHomeView.php');
+        require('views/backend/BackHomeView.php');
     }
 
     public function enregistrerBiographie()
@@ -44,7 +45,7 @@ class BackController
         $this->afficherPageErreur();
         $dbManager = new EpisodeManager();
         $episode = $dbManager->read($id);
-        require('views/admin/UpdateEpisodeView.php');
+        require('views/backend/UpdateEpisodeView.php');
     }
     public function enregistrerUpdateEpisode($id)
     {
@@ -75,7 +76,6 @@ class BackController
 
     public function recupererCommentaire($commentaireId)
     {
-
         $dbManager = new CommentaireManager();
         $commentaire = $dbManager->read($commentaireId);
         return $commentaire;
@@ -84,10 +84,27 @@ class BackController
     public function signalerCommentaire(Commentaire $commentaire)
     {
         $dbManager = new CommentaireManager();
+        if (isset($_SESSION['idCommentaire'. $commentaire->getId()])  ) {
+
+            $message = 'commentaire deja signalé';
+    
+            $episodeManager = new EpisodeManager();
+            $episodeId = $commentaire->getEpisodeId();
+            $episode = $episodeManager->read($episodeId);
+            $commentaires = $dbManager->readAll($episodeId);
+            require('views/frontend/EpisodeView.php');
+        
+        }else{
+
         $data = ['signale' => $commentaire->getSignale() + 1];
         $commentaire->hydrate($data);
         $dbManager->update($commentaire);
+
+        session_start();
+        $_SESSION['idCommentaire'.$commentaire->getId()] = $commentaire->getId();
         header('Location: index.php?route=episode-' . $commentaire->getEpisodeId());
+        }
+        
     }
 
     public function afficherCommentaireSignale()
@@ -96,7 +113,7 @@ class BackController
 
         $dbManager = new CommentaireManager();
         $commentaires = $dbManager->readCommentaireSignale();
-        require('views/admin/CommentaireView.php');
+        require('views/backend/CommentaireView.php');
     }
     public function supprimerCommentaire($commentaireId)
     {
@@ -108,7 +125,7 @@ class BackController
     public function afficherAddEpisode()
     {
         $this->afficherPageErreur();
-        require('views/admin/AddEpisodeView.php');
+        require('views/backend/AddEpisodeView.php');
     }
 
     public function afficherAddBiographie()
@@ -116,7 +133,7 @@ class BackController
         $this->afficherPageErreur();
         $dbManager = new BiographieManager();
         $biographie = $dbManager->read();
-        require('views/admin/AddBiographieView.php');
+        require('views/backend/AddBiographieView.php');
     }
 
     public function deconnecter()

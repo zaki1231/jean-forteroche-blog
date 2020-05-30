@@ -48,7 +48,7 @@ class FrontController
             $monAdmin = $dbManager->exist($_POST['identifiant'], $_POST['motdepasse']);
             if (!$monAdmin) {
 
-                $message = 'Identifiant ou mot de passe inccoret, Veuillez réessayer .';
+                $message = 'Identifiant ou mot de passe incorrect, veuillez réessayer.';
             } else {
                 session_start();
                 $_SESSION['identifiant'] = $_POST['identifiant'];

@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-lg-12 text-center">
         <h1 class="display-4 main-title text-center text-white d-inline-block position-relative">Section administrateur</h1>
-        <h4 class="text-center text-white">Veillez saisir votre identifiant et votre mot de passe </4>
+        <h4 class="text-center text-white">Veuillez saisir votre identifiant et votre mot de passe </4>
       </div>
     </div>
   </div>

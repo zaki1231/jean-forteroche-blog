@@ -57,12 +57,17 @@
 foreach ($commentaires as $commentaire) {
 ?>
 <form action=<?php echo "index.php?route=episode-" .$episode->getId(); ?> method="post">
-    <div class="container width_container">
+    <div id="<?php echo 'comment-'.$commentaire->getId(); ?>" class="container width_container">
         <div class="card border-0 shadow my-5">
             <a href='#' class="pseudo"> <?php echo $commentaire->getNomUtilisateur(); ?> </a>
             <div class="card-body">
                 <p class="card-text "> <?php echo $commentaire->getContenu(); ?> </p>
+                    <p class="message-alerte"><?php if (isset($message) && $commentaire->getSignale()>=1) {
+                                  echo $message;
+                                } ?></p>
+
             </div>
+            
             <a href=<?php echo "index.php?route=commentaire-" . $commentaire->getId(); ?> class="btn btn-signaler btn-primary" name="signaler">signaler</a>
         </div>
     </div>

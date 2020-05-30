@@ -23,7 +23,7 @@
 
         <div class="tinymce-width">
             <script src="https://cdn.tiny.cloud/1/7s1qz31y5wi146yyq2qajgvwaz99940hjvn686n6nvo79rlg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-            <textarea name="modifierTextEpisode" value="<?php echo $episode->getContenu();?>"> </textarea>
+            <textarea name="modifierTextEpisode"> <?php echo $episode->getContenu();?> </textarea>
             <input class="btn btn-article btn-primary" type="submit" value="Publier"/>
 
             <script>
@@ -33,7 +33,8 @@
                     toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
                     toolbar_mode: 'floating',
                     tinycomments_mode: 'embedded',
-                    tinycomments_author: 'Author name'
+                    tinycomments_author: 'Author name',
+                    height: "480"
                 });
             </script>
         </div>
@@ -42,4 +43,4 @@
 
 
 <?php $content = ob_get_clean(); ?>
-<?php require('adminTemplateView.php'); ?>
+<?php require('BackTemplateView.php'); ?>

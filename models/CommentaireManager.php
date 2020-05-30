@@ -64,10 +64,9 @@ class CommentaireManager extends Manager
     }
     public function readCommentaireSignale()
     {
-
         $commentaireSignale = [];
 
-        $query = $this->_bd->prepare('SELECT * FROM commentaires WHERE signale >= 1');
+        $query = $this->_bd->prepare('SELECT * FROM commentaires WHERE signale >= 1 ORDER BY signale DESC');
         $query->execute();
 
         while ($infosCommentaire = $query->fetch(PDO::FETCH_ASSOC)) {
@@ -84,4 +83,7 @@ class CommentaireManager extends Manager
         $query->bindValue(':id', $commentaire);
         $query->execute();
     }
+
+
+    
 }

@@ -55,4 +55,4 @@ $title = 'tableau de bord';
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('adminTemplateView.php'); ?>
+<?php require('BackTemplateView.php'); ?>

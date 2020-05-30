@@ -87,11 +87,6 @@ font-family: fantasy;
     height: 800px;
 }
 
-.width-TiteEpisode{
-    max-width: 63%;
-    margin-left: 20%;
-}
-
 .cardHomeAdmin{
     margin-top: 50px;  
 }
@@ -219,3 +214,4 @@ font-family: fantasy;
 .margin-footer .col-md-4{
     margin-left: 13%;
 }
+

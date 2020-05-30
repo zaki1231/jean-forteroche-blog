@@ -8,7 +8,7 @@ $title = 'commentaire signalé';
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h1 class="display-4 main-title text-center text-white d-inline-block position-relative">Commentaire Signalé</h1>
+        <h1 class="display-4 main-title text-center text-white d-inline-block position-relative">Commentaires Signalés</h1>
       </div>
     </div>
   </div>
@@ -40,4 +40,4 @@ foreach ($commentaires as $commentaire) {
 }
 ?>
 <?php $content = ob_get_clean(); ?>
-<?php require('adminTemplateView.php'); ?>
+<?php require('BackTemplateView.php'); ?>

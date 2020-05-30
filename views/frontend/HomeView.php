@@ -6,7 +6,6 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h1 class="display-4 main-title text-center text-white d-inline-block position-relative title-accueil">Billet simple pour l'Alaska</h1>
-
             </div>
         </div>
     </div>
