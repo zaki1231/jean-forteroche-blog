@@ -32,7 +32,7 @@
         </div>
         <div class="card-body">
             <div class="collapse-content">
-                <p class="card-text collapse" id="collapseContent"><?php echo substr($episodeRecent->getContenu(), 0, 400,) ?>...</p>
+                <p class="card-text collapse" id="collapseContent"><?php echo substr($episodeRecent->getContenu(), 0, 400) ?>...</p>
                 <a href=<?php echo "index.php?route=episode-" . $episodeRecent->getId(); ?> class="black-text text-color d-flex justify-content-end">
                     <h5 class="h5-Modif">Lire la suite...<i class="fas fa-angle-double-right"></i></h5>
                 </a>

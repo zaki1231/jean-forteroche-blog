@@ -28,7 +28,7 @@ $title = 'tableau de bord';
       <div class="view overlay">
         <img class="card-img-top" src="public/images/episode-image.jpg" alt="Card image cap">
       </div>
-      <div class="card-body">
+      <div class="card-body card-custom">
         <a class="activator waves-effect waves-light mr-4"><i class="fas fa-share-alt"></i></a>
         <h4 class="card-title-color "> <?php echo $episode->getTitre(); ?> </h4>
         <p class="card-text-color"> <?php echo substr($episode->getContenu(), 0, 320,)?> [...] </p>

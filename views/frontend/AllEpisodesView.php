@@ -25,7 +25,7 @@
                 </div>
                 <div class="card-body">
                     <h3 class="card-title card-title-color"> <?php echo $episode->geTtitre(); ?> </h3>
-                    <p class="card-text"> <?php echo substr($episode->getContenu(), 0, 320,) ?> [...] </p>
+                    <p class="card-text"> <?php echo substr($episode->getContenu(), 0, 320) ?> [...] </p>
 
                     <!-- Link -->
                     <a href=<?php echo "index.php?route=episode-" . $episode->getId(); ?> class="black-text text-color d-flex justify-content-end">

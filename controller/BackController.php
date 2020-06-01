@@ -67,11 +67,14 @@ class BackController
 
     public function enregistrerComment($episodeId)
     {
+        var_dump('coucou');
         $dbManager = new CommentaireManager();
         $data = ['nomUtilisateur' => $_POST['pseudo'], 'contenu' => $_POST['comment'], 'episodeId' => $episodeId, 'signale' => 0];
 
         $commentaire = new Commentaire($data);
         $dbManager->create($commentaire);
+        header('Location: index.php?route=episode-' . $commentaire->getEpisodeId() . '#ancre-commentaire');
+       
     }
 
     public function recupererCommentaire($commentaireId)
@@ -92,6 +95,7 @@ class BackController
             $episodeId = $commentaire->getEpisodeId();
             $episode = $episodeManager->read($episodeId);
             $commentaires = $dbManager->readAll($episodeId);
+            $commentaireIdSignale = $commentaire->getId();
             require('views/frontend/EpisodeView.php');
         
         }else{

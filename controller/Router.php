@@ -34,18 +34,27 @@ class Router
                 $this->_FrontController->afficherAllEpisodes();
             } elseif ($_GET['route'] === 'deconnexion') {
                 $this->_BackController->deconnecter();
-            } elseif (strpos($_GET['route'], 'supprimerEpisode-') !== false) {
+
+            } elseif (strpos($_GET['route'], ' ') !== false) {
                 $idchaine = explode("-", $_GET['route'])[1];
                 $id = intval($idchaine);
                 $this->_BackController->supprimerEpisode($id);
+
             } elseif (strpos($_GET['route'], "episode-") !== false) {
                 $idchaine = explode("-", $_GET['route'])[1];
                 $episodeId = intval($idchaine);
                 $this->_FrontController->afficherEpisode($episodeId);
 
-                if (isset($_POST['pseudo']) && isset($_POST['comment'])) {
+                /*if (isset($_POST['pseudo']) && isset($_POST['comment'])) {
                     $this->_BackController->enregistrerComment($episodeId);
-                }
+                }*/
+            } elseif (strpos($_GET['route'], 'ajouterCommentaire-') !==false){
+               
+                $idchaine = explode("-", $_GET['route'])[1];
+                $episodeId = intval($idchaine);
+                $this->_BackController->enregistrerComment($episodeId);
+          
+
             } elseif (strpos($_GET['route'], "commentaire-") !==false) {
                 $idchaine = explode("-", $_GET['route'])[1];
                 $commentaireId = intval($idchaine);
@@ -61,6 +70,7 @@ class Router
                 $idchaine = explode("-", $_GET['route'])[1];
                 $id = intval($idchaine);
                 $this->_BackController->afficherUpdateEpisode($id);
+                
             } elseif (strpos($_GET['route'], "ModifierEpisode-") !== false) {
                 if (isset($_POST['modifierTextEpisode']) && isset($_POST['modifierTitreEpisode'])) {
                     $idchaine = explode("-", $_GET['route'])[1];

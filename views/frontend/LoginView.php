@@ -13,7 +13,6 @@
 </header>
 <?php $h1 = ob_get_clean(); ?>
 
-
 <?php ob_start(); ?>
 <div class="container width_container">
   <div class="card border-0 shadow my-5">

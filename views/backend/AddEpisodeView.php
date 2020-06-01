@@ -23,8 +23,8 @@
 
         <div class="tinymce-width">
             <script src="https://cdn.tiny.cloud/1/7s1qz31y5wi146yyq2qajgvwaz99940hjvn686n6nvo79rlg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-            <textarea name="textEpisode" placeholder="Rédigez votre episode"></textarea>
-            <input class="btn btn-article btn-primary" type="submit" value="Publier" />
+                <textarea name="textEpisode" placeholder="Rédigez votre episode"></textarea>
+                <input class="btn btn-article btn-primary" type="submit" value="Publier" />
 
             <script>
                 tinymce.init({

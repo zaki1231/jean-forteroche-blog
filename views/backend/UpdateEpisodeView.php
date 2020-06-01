@@ -16,7 +16,7 @@
 <div class='container'>
     <form action=<?php echo "index.php?route=ModifierEpisode-" . $episode->getId(); ?> method="post">
         <div class="form-group row">
-            <div class="col-sm-10 width-TiteEpisode">
+            <div class="col-lg-12 col-md-12 col-sm-12 width-TiteEpisode">
                 <input type="text" class="form-control" name="modifierTitreEpisode" value="<?php echo $episode->getTitre(); ?>">
             </div>
         </div>

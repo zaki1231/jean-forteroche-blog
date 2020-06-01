@@ -215,3 +215,16 @@ font-family: fantasy;
     margin-left: 13%;
 }
 
+.card-custom{
+    position: relative;
+    padding-bottom: 40px;
+    
+}
+.card-custom a{
+    position: absolute;
+    bottom: 25px;
+    right: 15px;
+}
+.card-custom a:last-child{
+    bottom: 5px;
+}

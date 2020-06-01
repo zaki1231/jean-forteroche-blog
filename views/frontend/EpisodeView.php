@@ -23,7 +23,7 @@
     </div>
 </div>
  
-<form action=<?php echo "index.php?route=episode-" . $episode->getId(); ?> method="post">
+<form action=<?php echo "index.php?route=ajouterCommentaire-" . $episode->getId(); ?> method="post">
     <div class="container width_container">
         <div class="card border-0 shadow my-5">
             <div class="card-body p-5">
@@ -62,7 +62,7 @@ foreach ($commentaires as $commentaire) {
             <a href='#' class="pseudo"> <?php echo $commentaire->getNomUtilisateur(); ?> </a>
             <div class="card-body">
                 <p class="card-text "> <?php echo $commentaire->getContenu(); ?> </p>
-                    <p class="message-alerte"><?php if (isset($message) && $commentaire->getSignale()>=1) {
+                    <p class="message-alerte"><?php if (isset($message) && $commentaire->getSignale()>=1 && $commentaire->getId()== $commentaireIdSignale) {
                                   echo $message;
                                 } ?></p>
 
@@ -75,6 +75,9 @@ foreach ($commentaires as $commentaire) {
 <?php
 }
 ?>
+<div id="ancre-commentaire">
+    
+</div>
 
 <?php $content = ob_get_clean(); ?>
 <?php require('FrontTemplateView.php'); ?>
