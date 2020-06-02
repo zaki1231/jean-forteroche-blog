@@ -45,14 +45,14 @@ class FrontController
         if (isset($_POST['connecter']) && isset($_POST['identifiant']) && isset($_POST['motdepasse'])) {
 
 
-            $monAdmin = $dbManager->exist($_POST['identifiant'], $_POST['motdepasse']);
+            $monAdmin = $dbManager->exist(htmlspecialchars($_POST['identifiant']), htmlspecialchars($_POST['motdepasse']));
             if (!$monAdmin) {
 
                 $message = 'Identifiant ou mot de passe incorrect, veuillez réessayer.';
             } else {
                 session_start();
-                $_SESSION['identifiant'] = $_POST['identifiant'];
-                $_SESSION['motdepasse'] = $_POST['motdepasse'];
+                $_SESSION['identifiant'] = htmlspecialchars($_POST['identifiant']);
+                $_SESSION['motdepasse'] = htmlspecialchars($_POST['motdepasse']);
 
                 header('Location: index.php?route=admin');
                 exit();

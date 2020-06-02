@@ -16,7 +16,6 @@ class BackController
             header('Location: index.php?route=login');
         }
     }
-  
 
     public function afficherAdminHome()
     {
@@ -35,7 +34,7 @@ class BackController
     public function enregistrerEpisode()
     {
         $dbManager = new EpisodeManager();
-        $data = ['contenu' => $_POST['textEpisode'], 'titre' => $_POST['titreEpisode']];
+        $data = ['contenu' => $_POST['textEpisode'], 'titre' => htmlspecialchars($_POST['titreEpisode'])];
 
         $episode = new Episode($data);
         $dbManager->create($episode);
@@ -50,7 +49,7 @@ class BackController
     public function enregistrerUpdateEpisode($id)
     {
         $dbManager = new EpisodeManager();
-        $data = ['contenu' => $_POST['modifierTextEpisode'], 'titre' => $_POST['modifierTitreEpisode'], 'id' => $id];
+        $data = ['contenu' =>$_POST['modifierTextEpisode'], 'titre' =>htmlspecialchars($_POST['modifierTitreEpisode']), 'id' => $id];
 
         $updateEpisode = new Episode($data);
         $dbManager->update($updateEpisode);
@@ -69,7 +68,7 @@ class BackController
     {
         var_dump('coucou');
         $dbManager = new CommentaireManager();
-        $data = ['nomUtilisateur' => $_POST['pseudo'], 'contenu' => $_POST['comment'], 'episodeId' => $episodeId, 'signale' => 0];
+        $data = ['nomUtilisateur' => htmlspecialchars($_POST['pseudo']), 'contenu' => htmlspecialchars($_POST['comment']), 'episodeId' => $episodeId, 'signale' => 0];
 
         $commentaire = new Commentaire($data);
         $dbManager->create($commentaire);

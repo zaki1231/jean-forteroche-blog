@@ -35,7 +35,7 @@ class Router
             } elseif ($_GET['route'] === 'deconnexion') {
                 $this->_BackController->deconnecter();
 
-            } elseif (strpos($_GET['route'], ' ') !== false) {
+            } elseif (strpos($_GET['route'], 'supprimerEpisode-') !== false) {
                 $idchaine = explode("-", $_GET['route'])[1];
                 $id = intval($idchaine);
                 $this->_BackController->supprimerEpisode($id);
@@ -45,9 +45,6 @@ class Router
                 $episodeId = intval($idchaine);
                 $this->_FrontController->afficherEpisode($episodeId);
 
-                /*if (isset($_POST['pseudo']) && isset($_POST['comment'])) {
-                    $this->_BackController->enregistrerComment($episodeId);
-                }*/
             } elseif (strpos($_GET['route'], 'ajouterCommentaire-') !==false){
                
                 $idchaine = explode("-", $_GET['route'])[1];
